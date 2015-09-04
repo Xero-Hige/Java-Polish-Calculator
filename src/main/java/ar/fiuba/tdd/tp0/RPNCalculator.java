@@ -35,6 +35,8 @@ public class RPNCalculator {
 
     public float eval(String expression) {
         operationStack = new Stack<>();
+        PolishOperation defaultOperation = new DefaultOperation();
+
 
         String[] tokens = expression.split(" ");
         int index = 0;
@@ -42,10 +44,10 @@ public class RPNCalculator {
             String token = tokens[index];
             while (isInt(token)) {
                 operationStack.push(Float.parseFloat(token));
-                index++;
+                token = tokens[index++];
             }
 
-            PolishOperation operation = operations.get(token);
+            PolishOperation operation = operations.getOrDefault(token, defaultOperation);
             operation.solve(operationStack);
             index++;
         }
