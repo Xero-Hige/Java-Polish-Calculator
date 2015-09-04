@@ -20,5 +20,5 @@ import java.util.Stack;
 
 
 public interface PolishOperation {
-    void solve(Stack<Integer> args);
+    void solve(Stack<Float> args);
 }

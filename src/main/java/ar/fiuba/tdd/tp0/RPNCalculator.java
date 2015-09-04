@@ -22,32 +22,35 @@ import java.util.Stack;
 public class RPNCalculator {
 
     private Hashtable<String, PolishOperation> operations;
-    private Stack<Integer> operationStack;
+    private Stack<Float> operationStack;
 
-    private RPNCalculator() {
-        operations = new Hashtable<String, PolishOperation>();
+    public RPNCalculator() {
+        operations = new Hashtable<>();
     }
 
-    private boolean isInt(String value) {                //FIXME
-        return String.matches("-?\\d+(\\.\\d+)?");
+    private boolean isInt(String value) {//FIXME
+
+        return value.matches("-?\\d+(\\.\\d+)?");
     }
 
     public float eval(String expression) {
-        operationStack = new Stack<Integer>();
+        operationStack = new Stack<>();
 
         String[] tokens = expression.split(" ");
         int index = 0;
         while (index < tokens.length) {
             String token = tokens[index];
             while (isInt(token)) {
-                operationStack.push(Integer.parseInt(token));
+                operationStack.push(Float.parseFloat(token));
                 index++;
             }
 
-            PolishOperation operation = operations[token];
+            PolishOperation operation = operations.get(token);
             operation.solve(operationStack);
             index++;
         }
+
+        return operationStack.pop();
     }
 
 }
