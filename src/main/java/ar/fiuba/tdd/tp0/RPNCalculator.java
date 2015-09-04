@@ -17,23 +17,36 @@
 package ar.fiuba.tdd.tp0;
 
 import java.util.Hashtable;
+import java.util.Stack;
 
 public class RPNCalculator {
 
     private Hashtable<String, PolishOperation> operations;
-
-    private boolean isInt(String value) {                //FIXME
-        return String.matches("-?\\d+(\\.\\d+)?");
-    }
+    private Stack<Integer> operationStack;
 
     private RPNCalculator() {
         operations = new Hashtable<String, PolishOperation>();
     }
 
-    public float eval(String expression) {
-        String[] tokens = expression.split(" ");
-        for (String token : tokens) {
+    private boolean isInt(String value) {                //FIXME
+        return String.matches("-?\\d+(\\.\\d+)?");
+    }
 
+    public float eval(String expression) {
+        operationStack = new Stack<Integer>();
+
+        String[] tokens = expression.split(" ");
+        int index = 0;
+        while (index < tokens.length) {
+            String token = tokens[index];
+            while (isInt(token)) {
+                operationStack.push(Integer.parseInt(token));
+                index++;
+            }
+
+            PolishOperation operation = operations[token];
+            operation.solve(operationStack);
+            index++;
         }
     }
 

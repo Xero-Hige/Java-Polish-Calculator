@@ -20,5 +20,5 @@ import java.util.Stack;
 
 
 public interface PolishOperation {
-    static default void solve(Stack<String> args);
+    void solve(Stack<Integer> args);
 }
