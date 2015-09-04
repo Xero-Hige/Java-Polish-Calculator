@@ -65,6 +65,11 @@ public class RPNCalculatorTest {
     }
 
     @Test
+    public void combineOperatorsWithMemory() {
+        assertEquals((1 + 2) * (3 + 4) * (5 + 6), calculator.eval("1 2 + 3 4 + 5 6 + * *"), DELTA);
+    }
+
+    @Test
     public void multiSum() {
         assertEquals(5 + 2 + 4 + 5, calculator.eval("5 2 4 5 ++"), DELTA);
     }
