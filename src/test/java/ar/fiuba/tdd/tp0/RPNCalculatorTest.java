@@ -104,4 +104,9 @@ public class RPNCalculatorTest {
         assertEquals(5 * 3 + 2 + 4 + 5 + 3, calculator.eval("5 3 * 2 4 5 ++ 3 +"), DELTA);
     }
 
+    @Test
+    public void customBinaryOperator() {
+        calculator.registerBinaryOperator("MAX", Math::max);
+        assertEquals(Math.max(3 + 2, 2 * 2), calculator.eval("3 2 + 2 2 * MAX"), DELTA);
+    }
 }
