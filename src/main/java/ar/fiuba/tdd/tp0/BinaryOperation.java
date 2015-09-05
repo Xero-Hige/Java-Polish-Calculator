@@ -26,8 +26,8 @@ public class BinaryOperation implements PolishOperation {
 
     @Override
     public void solve(Stack<Float> resultsStack) {
-        float firstArg = resultsStack.pop();
         float secondArg = resultsStack.pop();
+        float firstArg = resultsStack.pop();
 
         float result = operation.solve(firstArg, secondArg);
 
