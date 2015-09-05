@@ -53,7 +53,7 @@ public class RPNCalculator {
     }
 
     public void registerNaryOperator(String id, IBinaryOperation operation) {
-        operations.put(id, new BinaryOperation(operation));
+        operations.put(id, new NaryOperation(operation));
     }
 
     public float eval(String expression) {

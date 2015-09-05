@@ -26,13 +26,13 @@ public class NaryOperation implements PolishOperation {
 
     @Override
     public void solve(Stack<Float> args) {
-        float first = args.pop();
+        float secondArg = args.pop();
 
         while (!args.empty()) {
-            float second = args.pop();
-            first = operation.solve(first, second);
+            float firstArg = args.pop();
+            secondArg = operation.solve(firstArg, secondArg);
         }
 
-        args.push(first);
+        args.push(secondArg);
     }
 }
