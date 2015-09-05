@@ -1,7 +1,6 @@
 /**
  * Copyright 2015
  * Gaston Martinez gaston.martinez.90@gmail.com
- * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -11,7 +10,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses
+ * along with this program.  If not, see http://www.gnu.org/licenses
  */
 
 package ar.fiuba.tdd.tp0;

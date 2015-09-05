@@ -5,7 +5,6 @@ import java.util.Stack;
 /**
  * Copyright 2015
  * Gaston Martinez gaston.martinez.90@gmail.com
- * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -15,23 +14,23 @@ import java.util.Stack;
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses
+ * along with this program.  If not, see http://www.gnu.org/licenses
  */
 public class BinaryOperation implements PolishOperation {
 
     private IBinaryOperation operation;
 
-    public BinaryOperation(IBinaryOperation op) {
-        operation = op;
+    public BinaryOperation(IBinaryOperation operation) {
+        this.operation = operation;
     }
 
     @Override
-    public void solve(Stack<Float> args) {
-        float arg1 = args.pop();
-        float arg2 = args.pop();
+    public void solve(Stack<Float> resultsStack) {
+        float firstArg = resultsStack.pop();
+        float secondArg = resultsStack.pop();
 
-        float result = operation.solve(arg1, arg2);
+        float result = operation.solve(firstArg, secondArg);
 
-        args.push(result);
+        resultsStack.push(result);
     }
 }
