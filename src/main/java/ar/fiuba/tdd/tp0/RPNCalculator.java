@@ -26,20 +26,34 @@ public class RPNCalculator {
     public RPNCalculator() {
         operations = new Hashtable<>();
 
+        registerDefaultBinaryOperations();
+        registerDefaultNaryOperations();
+    }
+
+    private void registerDefaultNaryOperations() {
+        registerNaryOperator("++", (float a, float b) -> a + b);
+        registerNaryOperator("--", (float a, float b) -> a - b);
+        registerNaryOperator("//", (float a, float b) -> a / b);
+        registerNaryOperator("**", (float a, float b) -> a * b);
+    }
+
+    private void registerDefaultBinaryOperations() {
         registerBinaryOperator("+", (float a, float b) -> a + b);
         registerBinaryOperator("-", (float a, float b) -> a - b);
         registerBinaryOperator("/", (float a, float b) -> a / b);
         registerBinaryOperator("*", (float a, float b) -> a * b);
         registerBinaryOperator("MOD", (float a, float b) -> a % b);
-
     }
 
     private boolean isInt(String value) {//FIXME
-
         return value.matches("-?\\d+(\\.\\d+)?");
     }
 
     public void registerBinaryOperator(String id, IBinaryOperation operation) {
+        operations.put(id, new BinaryOperation(operation));
+    }
+
+    public void registerNaryOperator(String id, IBinaryOperation operation) {
         operations.put(id, new BinaryOperation(operation));
     }
 
