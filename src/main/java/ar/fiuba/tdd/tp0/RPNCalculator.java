@@ -16,6 +16,7 @@
 package ar.fiuba.tdd.tp0;
 
 import java.util.Hashtable;
+import java.util.Optional;
 import java.util.Stack;
 
 public class RPNCalculator {
@@ -57,11 +58,14 @@ public class RPNCalculator {
     }
 
     public float eval(String expression) {
+        Optional<String> expressionOptional = Optional.ofNullable(expression);
+        String expressionToParse = expressionOptional.orElseThrow(IllegalArgumentException::new);
+
         Stack<Float> operationStack = new Stack<>();
+        operationStack.push(null);
         PolishOperation defaultOperation = new DefaultOperation();
 
-
-        String[] tokens = expression.split(" ");
+        String[] tokens = expressionToParse.split(" ");
         int index = 0;
         while (index < tokens.length) {
             String token = tokens[index];
@@ -75,7 +79,8 @@ public class RPNCalculator {
             index++;
         }
 
-        return operationStack.pop();
+        Optional<Float> valueOptional = Optional.ofNullable(operationStack.pop()) ;
+        return valueOptional.orElseThrow(IllegalArgumentException::new);
     }
 
 }
