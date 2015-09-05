@@ -21,7 +21,7 @@ public class NaryOperation implements PolishOperation {
 
     IBinaryOperation operation;
 
-    public NaryOperation (IBinaryOperation op){
+    public NaryOperation(IBinaryOperation op) {
         operation = op;
     }
 
@@ -29,9 +29,9 @@ public class NaryOperation implements PolishOperation {
     public void solve(Stack<Float> args) {
         float first = args.pop();
 
-        while (!args.empty()){
+        while (!args.empty()) {
             float second = args.pop();
-            first = operation.solve(first,second);
+            first = operation.solve(first, second);
         }
 
         args.push(first);

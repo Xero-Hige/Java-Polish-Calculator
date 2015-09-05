@@ -17,7 +17,7 @@ import java.util.Stack;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses
  */
-public class DefaultOperation implements PolishOperation{
+public class DefaultOperation implements PolishOperation {
     @Override
     public void solve(Stack<Float> args) {
         throw new IllegalArgumentException();

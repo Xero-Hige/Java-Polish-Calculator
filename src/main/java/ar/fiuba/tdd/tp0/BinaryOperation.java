@@ -17,11 +17,11 @@ import java.util.Stack;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses
  */
-public class BinaryOperation implements PolishOperation{
+public class BinaryOperation implements PolishOperation {
 
     private IBinaryOperation operation;
 
-    public BinaryOperation (IBinaryOperation op){
+    public BinaryOperation(IBinaryOperation op) {
         operation = op;
     }
 
@@ -30,7 +30,7 @@ public class BinaryOperation implements PolishOperation{
         float arg1 = args.pop();
         float arg2 = args.pop();
 
-        float result = operation.solve(arg1,arg2);
+        float result = operation.solve(arg1, arg2);
 
         args.push(result);
     }

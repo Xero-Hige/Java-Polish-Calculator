@@ -16,5 +16,5 @@ package ar.fiuba.tdd.tp0;
  * along with this program.  If not, see <http://www.gnu.org/licenses
  */
 public interface IBinaryOperation {
-    float solve (float a, float b);
+    float solve(float a, float b);
 }
