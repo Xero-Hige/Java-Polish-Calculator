@@ -1,3 +1,7 @@
+package ar.fiuba.tdd.tp0;
+
+import java.util.Stack;
+
 /**
  * Copyright 2015
  * Gaston Martinez gaston.martinez.90@gmail.com
@@ -12,12 +16,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see http://www.gnu.org/licenses
  */
+public class BinaryOperationI implements IPolishOperation {
 
-package ar.fiuba.tdd.tp0;
+    private IBinaryOperation operation;
 
-import java.util.Stack;
+    public BinaryOperationI(IBinaryOperation operation) {
+        this.operation = operation;
+    }
 
+    @Override
+    public void solve(Stack<Float> resultsStack) {
+        float secondArg = resultsStack.pop();
+        float firstArg = resultsStack.pop();
 
-public interface PolishOperation {
-    void solve(Stack<Float> args);
+        float result = operation.solve(firstArg, secondArg);
+
+        resultsStack.push(result);
+    }
 }

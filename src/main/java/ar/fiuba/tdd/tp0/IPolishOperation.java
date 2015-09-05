@@ -1,7 +1,3 @@
-package ar.fiuba.tdd.tp0;
-
-import java.util.Stack;
-
 /**
  * Copyright 2015
  * Gaston Martinez gaston.martinez.90@gmail.com
@@ -16,23 +12,11 @@ import java.util.Stack;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see http://www.gnu.org/licenses
  */
-public class NaryOperation implements PolishOperation {
 
-    IBinaryOperation operation;
+package ar.fiuba.tdd.tp0;
 
-    public NaryOperation(IBinaryOperation operation) {
-        this.operation = operation;
-    }
+import java.util.Stack;
 
-    @Override
-    public void solve(Stack<Float> args) {
-        float firstArg = args.pop();
-
-        while (!args.empty()) {
-            float secondArg = args.pop();
-            firstArg = operation.solve(firstArg, secondArg);
-        }
-
-        args.push(firstArg);
-    }
+public interface IPolishOperation {
+    void solve(Stack<Float> args);
 }

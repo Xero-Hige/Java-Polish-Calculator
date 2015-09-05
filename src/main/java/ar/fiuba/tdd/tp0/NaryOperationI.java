@@ -16,21 +16,23 @@ import java.util.Stack;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see http://www.gnu.org/licenses
  */
-public class BinaryOperation implements PolishOperation {
+public class NaryOperationI implements IPolishOperation {
 
-    private IBinaryOperation operation;
+    IBinaryOperation operation;
 
-    public BinaryOperation(IBinaryOperation operation) {
+    public NaryOperationI(IBinaryOperation operation) {
         this.operation = operation;
     }
 
     @Override
-    public void solve(Stack<Float> resultsStack) {
-        float secondArg = resultsStack.pop();
-        float firstArg = resultsStack.pop();
+    public void solve(Stack<Float> args) {
+        float firstArg = args.pop();
 
-        float result = operation.solve(firstArg, secondArg);
+        while (!args.empty()) {
+            float secondArg = args.pop();
+            firstArg = operation.solve(firstArg, secondArg);
+        }
 
-        resultsStack.push(result);
+        args.push(firstArg);
     }
 }

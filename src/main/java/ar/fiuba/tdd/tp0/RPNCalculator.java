@@ -21,7 +21,7 @@ import java.util.Stack;
 
 public class RPNCalculator {
 
-    private Hashtable<String, PolishOperation> operations;
+    private Hashtable<String, IPolishOperation> operations;
 
     public RPNCalculator() {
         operations = new Hashtable<>();
@@ -50,11 +50,11 @@ public class RPNCalculator {
     }
 
     public void registerBinaryOperator(String id, IBinaryOperation operation) {
-        operations.put(id, new BinaryOperation(operation));
+        operations.put(id, new BinaryOperationI(operation));
     }
 
     public void registerNaryOperator(String id, IBinaryOperation operation) {
-        operations.put(id, new NaryOperation(operation));
+        operations.put(id, new NaryOperationI(operation));
     }
 
     public float eval(String expression) {
@@ -63,7 +63,7 @@ public class RPNCalculator {
 
         Stack<Float> operationStack = new Stack<>();
         operationStack.push(null);
-        PolishOperation defaultOperation = new DefaultOperation();
+        IPolishOperation defaultOperation = new DefaultOperationI();
 
         String[] tokens = expressionToParse.split(" ");
         int index = 0;
@@ -74,7 +74,7 @@ public class RPNCalculator {
                 token = tokens[++index];
             }
 
-            PolishOperation operation = operations.getOrDefault(token, defaultOperation);
+            IPolishOperation operation = operations.getOrDefault(token, defaultOperation);
             operation.solve(operationStack);
             index++;
         }
