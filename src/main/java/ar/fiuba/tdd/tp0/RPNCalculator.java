@@ -22,10 +22,16 @@ import java.util.Stack;
 public class RPNCalculator {
 
     private Hashtable<String, PolishOperation> operations;
-    private Stack<Float> operationStack;
 
     public RPNCalculator() {
         operations = new Hashtable<>();
+
+        registerBinaryOperator("+", (float a, float b) -> a + b);
+        registerBinaryOperator("-", (float a, float b) -> a - b);
+        registerBinaryOperator("/", (float a, float b) -> a / b);
+        registerBinaryOperator("*", (float a, float b) -> a * b);
+        registerBinaryOperator("MOD", (float a, float b) -> a % b);
+
     }
 
     private boolean isInt(String value) {//FIXME
@@ -33,8 +39,12 @@ public class RPNCalculator {
         return value.matches("-?\\d+(\\.\\d+)?");
     }
 
+    public void registerBinaryOperator(String id, IBinaryOperation operation) {
+        operations.put(id, new BinaryOperation(operation));
+    }
+
     public float eval(String expression) {
-        operationStack = new Stack<>();
+        Stack<Float> operationStack = new Stack<>();
         PolishOperation defaultOperation = new DefaultOperation();
 
 
