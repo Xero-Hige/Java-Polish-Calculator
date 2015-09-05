@@ -15,6 +15,7 @@
 
 package ar.fiuba.tdd.tp0;
 
+import java.util.EmptyStackException;
 import java.util.Hashtable;
 import java.util.Optional;
 import java.util.Stack;
@@ -62,7 +63,6 @@ public class RPNCalculator {
         String expressionToParse = expressionOptional.orElseThrow(IllegalArgumentException::new);
 
         Stack<Float> operationStack = new Stack<>();
-        operationStack.push(null);
         IPolishOperation defaultOperation = new DefaultOperationI();
 
         String[] tokens = expressionToParse.split(" ");
@@ -75,12 +75,15 @@ public class RPNCalculator {
             }
 
             IPolishOperation operation = operations.getOrDefault(token, defaultOperation);
-            operation.solve(operationStack);
+            try {
+                operation.solve(operationStack);
+            } catch (EmptyStackException e) {
+                throw new IllegalArgumentException();
+            }
             index++;
         }
 
-        Optional<Float> valueOptional = Optional.ofNullable(operationStack.pop()) ;
-        return valueOptional.orElseThrow(IllegalArgumentException::new);
+        return operationStack.pop();
     }
 
 }

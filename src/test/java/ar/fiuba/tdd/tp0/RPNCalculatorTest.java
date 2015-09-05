@@ -109,4 +109,6 @@ public class RPNCalculatorTest {
         calculator.registerBinaryOperator("MAX", Math::max);
         assertEquals(Math.max(3 + 2, 2 * 2), calculator.eval("3 2 + 2 2 * MAX"), DELTA);
     }
+
+
 }
