@@ -67,7 +67,7 @@ public class RPNCalculator {
             String token = tokens[index];
             while (isInt(token)) {
                 operationStack.push(Float.parseFloat(token));
-                token = tokens[index++];
+                token = tokens[++index];
             }
 
             PolishOperation operation = operations.getOrDefault(token, defaultOperation);
