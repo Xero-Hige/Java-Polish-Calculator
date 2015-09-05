@@ -30,21 +30,21 @@ public class RPNCalculator {
     }
 
     private void registerDefaultNaryOperations() {
-        registerNaryOperator("++", (float a, float b) -> a + b);
-        registerNaryOperator("--", (float a, float b) -> a - b);
-        registerNaryOperator("//", (float a, float b) -> a / b);
-        registerNaryOperator("**", (float a, float b) -> a * b);
+        registerNaryOperator("++", (float firstOp, float secondOp) -> firstOp + secondOp);
+        registerNaryOperator("--", (float firstOp, float secondOp) -> firstOp - secondOp);
+        registerNaryOperator("//", (float firstOp, float secondOp) -> firstOp / secondOp);
+        registerNaryOperator("**", (float firstOp, float secondOp) -> firstOp * secondOp);
     }
 
     private void registerDefaultBinaryOperations() {
-        registerBinaryOperator("+", (float a, float b) -> a + b);
-        registerBinaryOperator("-", (float a, float b) -> a - b);
-        registerBinaryOperator("/", (float a, float b) -> a / b);
-        registerBinaryOperator("*", (float a, float b) -> a * b);
-        registerBinaryOperator("MOD", (float a, float b) -> a % b);
+        registerBinaryOperator("+", (float firstOp, float secondOp) -> firstOp + secondOp);
+        registerBinaryOperator("-", (float firstOp, float secondOp) -> firstOp - secondOp);
+        registerBinaryOperator("/", (float firstOp, float secondOp) -> firstOp / secondOp);
+        registerBinaryOperator("*", (float firstOp, float secondOp) -> firstOp * secondOp);
+        registerBinaryOperator("MOD", (float firstOp, float secondOp) -> firstOp % secondOp);
     }
 
-    private boolean isInt(String value) {//FIXME
+    private boolean isInt(String value) { //FIXME
         return value.matches("-?\\d+(\\.\\d+)?");
     }
 
