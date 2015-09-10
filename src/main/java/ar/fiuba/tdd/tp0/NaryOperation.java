@@ -16,11 +16,11 @@ import java.util.Stack;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see http://www.gnu.org/licenses
  */
-public class NaryOperationI implements IPolishOperation {
+public class NaryOperation implements IPolishOperation {
 
     IBinaryOperation operation;
 
-    public NaryOperationI(IBinaryOperation operation) {
+    public NaryOperation(IBinaryOperation operation) {
         this.operation = operation;
     }
 

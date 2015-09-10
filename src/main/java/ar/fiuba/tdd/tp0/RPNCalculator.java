@@ -46,16 +46,16 @@ public class RPNCalculator {
         registerBinaryOperator("MOD", (float firstOp, float secondOp) -> firstOp % secondOp);
     }
 
-    private boolean isInt(String value) { //FIXME
+    private boolean isDigit(String value) {
         return value.matches("-?\\d+(\\.\\d+)?");
     }
 
     public void registerBinaryOperator(String id, IBinaryOperation operation) {
-        operations.put(id, new BinaryOperationI(operation));
+        operations.put(id, new BinaryOperation(operation));
     }
 
     public void registerNaryOperator(String id, IBinaryOperation operation) {
-        operations.put(id, new NaryOperationI(operation));
+        operations.put(id, new NaryOperation(operation));
     }
 
     public float eval(String expression) {
@@ -63,13 +63,13 @@ public class RPNCalculator {
         String expressionToParse = expressionOptional.orElseThrow(IllegalArgumentException::new);
 
         Stack<Float> operationStack = new Stack<>();
-        IPolishOperation defaultOperation = new DefaultOperationI();
+        IPolishOperation defaultOperation = new DefaultOperation();
 
         String[] tokens = expressionToParse.split(" ");
         int index = 0;
         while (index < tokens.length) {
             String token = tokens[index];
-            while (isInt(token)) {
+            while (isDigit(token)) {
                 operationStack.push(Float.parseFloat(token));
                 token = tokens[++index];
             }
